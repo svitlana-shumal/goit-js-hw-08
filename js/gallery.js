@@ -83,4 +83,13 @@ imgEl.addEventListener("click", (event) => {
   if (!clickedImage) return;
 
   console.log(clickedImage.dataset.source);
+
+  const instance = basicLightbox.create(`
+<div class="modal">
+<img src="${clickedImage.dataset.source}" alt="${clickedImage.alt}"/></div>
+`);
+  instance.show();
+  document.querySelector(".modal").addEventListener("click", () => {
+    instance.close();
+  });
 });
