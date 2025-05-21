@@ -79,14 +79,11 @@ imgEl.innerHTML = gallerryItem;
 imgEl.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const clickedImage = event.target.closest(".gallery-image");
-  if (!clickedImage) return;
-
-  console.log(clickedImage.dataset.source);
+  if (event.target.nodeName !== "IMG") return;
 
   const instance = basicLightbox.create(`
 <div class="modal">
-<img src="${clickedImage.dataset.source}" alt="${clickedImage.alt}"/></div>
+<img src="${event.target.dataset.source}" alt="${event.target.alt}"/></div>
 `);
   instance.show();
   document.querySelector(".modal").addEventListener("click", () => {
